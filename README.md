@@ -20,7 +20,7 @@ Prerequisites
 Basic Usage
 -----------
 
-- Start a new django project with: `django-admin startproject --template=https://github.com/Adyg/django-heroku-s3/archive/master.zip --extension sh,py,pp --name Vagrantfile,Procfile projectname`
+- Start a new django project with (make sure to change projectname to the actual project name): `django-admin startproject --template=https://github.com/Adyg/django-heroku-s3/archive/master.zip --extension sh,py,pp --name Vagrantfile,Procfile projectname`
 
 - Start up the vagrant box with (this might take a while): `cd projectname/vagrant && vagrant up`
 
