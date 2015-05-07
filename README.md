@@ -20,21 +20,18 @@ Prerequisites
 Basic Usage
 -----------
 
-1. Start a new django project with: 
-```
-django-admin startproject --template=https://github.com/Adyg/django-heroku-s3/archive/master.zip --extension sh,py,pp --name Vagrantfile,Procfile projectname
-```
-2. Start up the vagrant box with (this might take a while):
-```
-cd projectname/vagrant && vagrant up
-```
-3. SSH into the vagrant box with `vagrant ssh`. The project will be available under `/vagrant`. A postgresql database will be automatically created (the username/pass are the [projectname])
-4. Use `heroku auth:login` to authenticate with Heroku
+- Start a new django project with: `django-admin startproject --template=https://github.com/Adyg/django-heroku-s3/archive/master.zip --extension sh,py,pp --name Vagrantfile,Procfile projectname`
+
+- Start up the vagrant box with (this might take a while): `cd projectname/vagrant && vagrant up`
+
+- SSH into the vagrant box with `vagrant ssh`. The project will be available under `/vagrant`. A postgresql database will be automatically created (the username/pass are the [projectname])
+
+- Use `heroku auth:login` to authenticate with Heroku
 
 Amazon S3
 ---------
-1. Create an [Amazon S3 bucket ](https://console.aws.amazon.com/s3)
-2. After creating the bucket, under it's Properties > Permissions section, update it's  CORS configuration to something along the lines of:
+- Create an [Amazon S3 bucket ](https://console.aws.amazon.com/s3)
+- After creating the bucket, under it's Properties > Permissions section, update it's  CORS configuration to something along the lines of:
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
@@ -47,16 +44,16 @@ Amazon S3
     </CORSRule>
 </CORSConfiguration>
 ```
-3. Create a new [IAM User](https://console.aws.amazon.com/iam/home) (remember to download it's access key and secret access key)
-4. Go to the new IAM User's page and attach a new policy (e.g AmazonS3FullAccess) to allow access to S3
+- Create a new [IAM User](https://console.aws.amazon.com/iam/home) (remember to download it's access key and secret access key)
+- Go to the new IAM User's page and attach a new policy (e.g AmazonS3FullAccess) to allow access to S3
 
 Heroku
 ------
-1. Create an app on [Heroku](https://heroku.com/) (aim for it's name to be the same as the Django project name, otherwise customization to the bash scripts will be needed)
-2. Inside the vagrant box, go to the `/vagrant/[projectname]` dir and run `heroku git:remote -a [projectname]`
-3. Inside the vagrant box, run the `./deploy_heroku.sh` script to push the project to Heroku
-4. Update the project Heroku settings related to Amazon S3 (access keys and bucket name) (either via heroku toolbelt or via the Heroku web UI)
-5. Add a new Heroku setting: `DISABLE_COLLECTSTATIC` and set it's value to `1`
+- Create an app on [Heroku](https://heroku.com/) (aim for it's name to be the same as the Django project name, otherwise customization to the bash scripts will be needed)
+- Inside the vagrant box, go to the `/vagrant/[projectname]` dir and run `heroku git:remote -a [projectname]`
+- Inside the vagrant box, run the `./deploy_heroku.sh` script to push the project to Heroku
+- Update the project Heroku settings related to Amazon S3 (access keys and bucket name) (either via heroku toolbelt or via the Heroku web UI)
+- Add a new Heroku setting: `DISABLE_COLLECTSTATIC` and set it's value to `1`
 
 Note: the static assets will not be pushed to Heroku (the included .slugignore file prevents it). Instead, they should be published to S3 via the included `./publish_assets.sh` (from inside the vagrant box). The reason is to reduce the Heroku slug size as much as possible.
 
