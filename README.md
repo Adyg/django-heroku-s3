@@ -20,13 +20,13 @@ Prerequisites
 Basic Usage
 -----------
 
-- Start a new django project with (make sure to change projectname to the actual project name): `django-admin startproject --template=https://github.com/Adyg/django-heroku-s3/archive/master.zip --extension sh,py,pp --name Vagrantfile,Procfile projectname`
+- Start a new django project with (make sure to change projectname to the actual project name): `$ django-admin startproject --template=https://github.com/Adyg/django-heroku-s3/archive/master.zip --extension sh,py,pp --name Vagrantfile,Procfile projectname`
 
-- Start up the vagrant box with (this might take a while): `cd projectname/vagrant && vagrant up`
+- Start up the vagrant box with (this might take a while): `$ cd projectname/vagrant && vagrant up`
 
-- SSH into the vagrant box with `vagrant ssh`. The project will be available under `/vagrant`. A postgresql database will be automatically created (the username/pass are the [projectname])
+- SSH into the vagrant box with `$ vagrant ssh`. The project will be available under `/vagrant`. A postgresql database will be automatically created (the username/pass are the [projectname])
 
-- Use `heroku auth:login` to authenticate with Heroku
+- Use `$ heroku auth:login` to authenticate with Heroku
 
 Amazon S3
 ---------
@@ -50,13 +50,19 @@ Amazon S3
 Heroku
 ------
 - Create an app on [Heroku](https://heroku.com/) (aim for it's name to be the same as the Django project name, otherwise customization to the bash scripts will be needed)
-- Inside the vagrant box, go to the `/vagrant/[projectname]` dir and run `heroku git:remote -a [projectname]`
-- Inside the vagrant box, run the `./deploy_heroku.sh` script to push the project to Heroku
-- Update the project Heroku settings related to Amazon S3 (access keys and bucket name) (either via heroku toolbelt or via the Heroku web UI)
-- Add a new Heroku setting: `DISABLE_COLLECTSTATIC` and set it's value to `1`
-
-Note: the static assets will not be pushed to Heroku (the included .slugignore file prevents it). Instead, they should be published to S3 via the included `./publish_assets.sh` (from inside the vagrant box). The reason is to reduce the Heroku slug size as much as possible.
+- Inside the vagrant box, go to the `/vagrant/[projectname]` dir and run `$ heroku git:remote -a [projectname]`
+- Inside the vagrant box, run the `$ ./deploy_heroku.sh` script to push the project to Heroku
+- Update the project Heroku settings (can be run inside the vagrant box, under the /vagrant/projectname dir):
+```
+$ heroku config:set DJANGO_SETTINGS_MODULE=projectname.settings.heroku
+$ heroku config:set AWS_STORAGE_BUCKET_NAME=[S3 bucket name]
+$ heroku config:set AWS_ACCESS_KEY_ID=[S3 access key]
+$ heroku config:set AWS_SECRET_ACCESS_KEY=[S3 secret access key]
+$ heroku config:set SECRET_KEY=random_string
+$ heroku config:set DISABLE_COLLECTSTATIC=1
+ ```
+Note: the static assets will not be pushed to Heroku (the included .slugignore file prevents it). Instead, they should be published to S3 via the included `$ ./publish_assets.sh` (from inside the vagrant box). The reason is to reduce the Heroku slug size as much as possible.
 
 Dev Server
 ----------
-The Django development server can be started inside the Vagrant box by using the `/vagrant/[projectname]/run_dev_server.sh` script. The development server will be available on the host machine at http://localhost:9171 (you can change the port in the Vagrantfile)
+The Django development server can be started inside the Vagrant box by using the `$ /vagrant/[projectname]/run_dev_server.sh` script. The development server will be available on the host machine at http://localhost:9171 (you can change the port in the Vagrantfile)
