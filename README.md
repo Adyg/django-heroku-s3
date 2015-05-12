@@ -45,7 +45,27 @@ Amazon S3
 </CORSConfiguration>
 ```
 - Create a new [IAM User](https://console.aws.amazon.com/iam/home) (remember to download it's access key and secret access key)
-- Go to the new IAM User's page and attach a new policy (e.g AmazonS3FullAccess) to allow access to S3
+- Go to the new IAM User's page and attach a new policy to allow access to S3. Something similar to:
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "s3:ListAllMyBuckets",
+            "Resource": "arn:aws:s3:::*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::BUCKET_NAME",
+                "arn:aws:s3:::BUCKET_NAME/*"
+            ]
+        }
+    ]
+}
+```
 
 Heroku
 ------
