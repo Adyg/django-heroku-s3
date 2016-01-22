@@ -1,2 +1,2 @@
 git push origin master
-git subtree push --prefix {{project_name}} heroku master
+git push heroku master

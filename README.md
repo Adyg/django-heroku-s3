@@ -70,9 +70,9 @@ Amazon S3
 Heroku
 ------
 - Create an app on [Heroku](https://heroku.com/) (aim for it's name to be the same as the Django project name, otherwise customization to the bash scripts will be needed)
-- Inside the vagrant box, go to the `/vagrant/[projectname]` dir and run `$ heroku git:remote -a [projectname]`
+- Inside the vagrant box, go to the `/vagrant` dir and run `$ heroku git:remote -a [projectname]`
 - Inside the vagrant box, run the `$ ./deploy_heroku.sh` script to push the project to Heroku
-- Update the project Heroku settings (can be run inside the vagrant box, under the /vagrant/projectname dir):
+- Update the project Heroku settings (can be run inside the vagrant box, under the /vagrant dir):
 ```
 $ heroku config:set DJANGO_SETTINGS_MODULE=projectname.settings.heroku
 $ heroku config:set AWS_STORAGE_BUCKET_NAME=[S3 bucket name]
@@ -85,4 +85,4 @@ Note: the static assets will not be pushed to Heroku (the included .slugignore f
 
 Dev Server
 ----------
-The Django development server can be started inside the Vagrant box by using the `$ /vagrant/[projectname]/run_dev_server.sh` script. The development server will be available on the host machine at http://localhost:9171 (you can change the port in the Vagrantfile)
+The Django development server can be started inside the Vagrant box by using the `$ /vagrant/run_dev_server.sh` script. The development server will be available on the host machine at http://localhost:9171 (you can change the port in the Vagrantfile)
