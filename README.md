@@ -90,5 +90,7 @@ The Django development server can be started inside the Vagrant box by using the
 Sass
 ----
 CSS files can be built with 
-`$ cd /vagrant/static`
-`$ bundler exec compass compile`
+```
+$ cd /vagrant/static
+$ bundler exec compass compile
+```
