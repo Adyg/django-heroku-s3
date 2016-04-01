@@ -1,5 +1,5 @@
 # django-heroku-s3
-Django 1.8 project template with built-in [Heroku](https://heroku.com/), [Vagrant](https://www.vagrantup.com/) and [Amazon S3](http://aws.amazon.com/s3/) support.
+Django 1.8 project template with built-in [Heroku](https://heroku.com/), [Vagrant](https://www.vagrantup.com/), [Amazon S3](http://aws.amazon.com/s3/) and [Sass](http://sass-lang.com/) support.
 
 What you will end up with
 -------------------------
@@ -7,7 +7,7 @@ What you will end up with
 1. Django project skeleton
 2. Settings for running the project on [Heroku](https://heroku.com/), using [waitress](http://waitress.readthedocs.org/en/latest/) and [S3](http://aws.amazon.com/s3) for static files.
 3. Custom bash scripts for pushing to Heroku, publishing assets to S3 and running the dev server.
-4. Vagrant box setup with basic development environment (postgresql, pip, heroku toolbelt, git)
+4. Vagrant box setup with basic development environment (postgresql, pip, heroku toolbelt, git, sass support)
 
 Prerequisites
 -------------
@@ -86,3 +86,9 @@ Note: the static assets will not be pushed to Heroku (the included .slugignore f
 Dev Server
 ----------
 The Django development server can be started inside the Vagrant box by using the `$ /vagrant/run_dev_server.sh` script. The development server will be available on the host machine at http://localhost:9171 (you can change the port in the Vagrantfile)
+
+Sass
+----
+CSS files can be built with 
+`$ cd /vagrant/static`
+`$ bundler exec compass compile`
