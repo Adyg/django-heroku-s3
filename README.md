@@ -1,5 +1,5 @@
 # django-heroku-s3
-Django 1.8 project template with built-in [Heroku](https://heroku.com/), [Vagrant](https://www.vagrantup.com/), [Amazon S3](http://aws.amazon.com/s3/) and [Sass](http://sass-lang.com/) support.
+Django 1.11 project template with built-in [Heroku](https://heroku.com/), [Vagrant](https://www.vagrantup.com/), [Amazon S3](http://aws.amazon.com/s3/) and [Sass](http://sass-lang.com/) support.
 
 What you will end up with
 -------------------------
