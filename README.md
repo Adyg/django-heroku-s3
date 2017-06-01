@@ -1,5 +1,5 @@
 # django-heroku-s3
-Django 1.11 project template with built-in [Heroku](https://heroku.com/), [Vagrant](https://www.vagrantup.com/), [Amazon S3](http://aws.amazon.com/s3/) and [Sass](http://sass-lang.com/) support.
+Django 1.10 project template with built-in [Heroku](https://heroku.com/), [Vagrant](https://www.vagrantup.com/), [Amazon S3](http://aws.amazon.com/s3/), [Sass](http://sass-lang.com/) and [Solr](http://lucene.apache.org/solr/) support.
 
 What you will end up with
 -------------------------
@@ -7,7 +7,7 @@ What you will end up with
 1. Django project skeleton
 2. Settings for running the project on [Heroku](https://heroku.com/), using [waitress](http://waitress.readthedocs.org/en/latest/) and [S3](http://aws.amazon.com/s3) for static files.
 3. Custom bash scripts for pushing to Heroku, publishing assets to S3 and running the dev server.
-4. Vagrant box setup with basic development environment (postgresql, pip, heroku toolbelt, git, sass support)
+4. Vagrant box setup with basic development environment (postgresql, pip, heroku toolbelt, git, sass and solr support)
 
 Prerequisites
 -------------
@@ -22,9 +22,9 @@ Basic Usage
 
 - Start a new django project with (make sure to change projectname to the actual project name): `$ django-admin startproject --template=https://github.com/Adyg/django-heroku-s3/archive/master.zip --extension sh,py,pp --name Vagrantfile,Procfile projectname`
 
-- Start up the vagrant box with (this might take a while): `$ vagrant up` (from inside the projectname/vagrant dir)
+- Start up the vagrant box with (this might take a while): `$ vagrant up` (from inside the projectname/vagrant_data dir)
 
-- SSH into the vagrant box with `$ vagrant ssh` (from inside the projectname/vagrant dir). The project will be available under `/vagrant`. A postgresql database will be automatically created (the username/pass are the [projectname])
+- SSH into the vagrant box with `$ vagrant ssh` (from inside the projectname/vagrant_data dir). The project will be available under `/vagrant_data`. A postgresql database will be automatically created (the username/pass are the [projectname])
 
 - Use `$ heroku auth:login` to authenticate with Heroku
 
@@ -70,9 +70,9 @@ Amazon S3
 Heroku
 ------
 - Create an app on [Heroku](https://heroku.com/) (aim for it's name to be the same as the Django project name, otherwise customization to the bash scripts will be needed)
-- Inside the vagrant box, go to the `/vagrant` dir and run `$ heroku git:remote -a [projectname]`
+- Inside the vagrant box, go to the `/vagrant_data` dir and run `$ heroku git:remote -a [projectname]`
 - Inside the vagrant box, run the `$ ./deploy_heroku.sh` script to push the project to Heroku
-- Update the project Heroku settings (can be run inside the vagrant box, under the /vagrant dir):
+- Update the project Heroku settings (can be run inside the vagrant box, under the /vagrant_data dir):
 ```
 $ heroku config:set DJANGO_SETTINGS_MODULE=projectname.settings.heroku
 $ heroku config:set AWS_STORAGE_BUCKET_NAME=[S3 bucket name]
@@ -85,12 +85,12 @@ Note: the static assets will not be pushed to Heroku (the included .slugignore f
 
 Dev Server
 ----------
-The Django development server can be started inside the Vagrant box by using the `$ /vagrant/run_dev_server.sh` script. The development server will be available on the host machine at http://localhost:9171 (you can change the port in the Vagrantfile)
+The Django development server can be started inside the Vagrant box by using the `$ /vagrant_data/run_dev_server.sh` script. The development server will be available on the host machine at http://localhost:9198 (you can change the port in the Vagrantfile)
 
 Sass
 ----
 CSS files can be built with 
 ```
-$ cd /vagrant/static
+$ cd /vagrant_data/static
 $ bundler exec compass compile
 ```
