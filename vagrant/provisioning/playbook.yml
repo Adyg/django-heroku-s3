@@ -53,12 +53,12 @@
   - name: ensure postgresql user is created
     become: true
     become_user: postgres
-    postgresql_user: name=tradingscreen password=tradingscreen role_attr_flags=CREATEDB,SUPERUSER
+    postgresql_user: name={{project_name}} password={{project_name}} role_attr_flags=CREATEDB,SUPERUSER
 
   - name: ensure database is created
     become: true
     become_user: postgres
-    postgresql_db: name=tradingscreen login_user=postgres encoding=UTF-8 lc_collate=en_US.UTF-8 lc_ctype=en_US.UTF-8
+    postgresql_db: name={{project_name}} login_user=postgres encoding=UTF-8 lc_collate=en_US.UTF-8 lc_ctype=en_US.UTF-8
 
   - name: Install software-properties-common for apt-add-repository command
     sudo: yes
