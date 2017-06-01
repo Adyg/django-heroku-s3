@@ -15,16 +15,18 @@ Prerequisites
 1. A [Heroku](https://heroku.com/) account
 2. An [Amazon AWS](http://aws.amazon.com) account
 3. [Vagrant](http://www.vagrantup.com/downloads) installed
-
+4. [Ansible](http://docs.ansible.com/ansible/intro_installation.html) installed
 
 Basic Usage
 -----------
 
 - Start a new django project with (make sure to change projectname to the actual project name): `$ django-admin startproject --template=https://github.com/Adyg/django-heroku-s3/archive/master.zip --extension sh,py,pp --name Vagrantfile,Procfile projectname`
 
-- Start up the vagrant box with (this might take a while): `$ vagrant up` (from inside the projectname/vagrant_data dir)
+- Ensure all packages required by Ansible are present by running: `$ ansible-galaxy install -r requirement.txt` (from inside the projectname/vagrant dir)
 
-- SSH into the vagrant box with `$ vagrant ssh` (from inside the projectname/vagrant_data dir). The project will be available under `/vagrant_data`. A postgresql database will be automatically created (the username/pass are the [projectname])
+- Start up the vagrant box with (this might take a while): `$ vagrant up` (from inside the projectname/vagrant dir)
+
+- SSH into the vagrant box with `$ vagrant ssh` (from inside the projectname/vagrant dir). The project will be available under `/vagrant_data`. A postgresql database will be automatically created (the username/pass are the [projectname])
 
 - Use `$ heroku auth:login` to authenticate with Heroku
 
