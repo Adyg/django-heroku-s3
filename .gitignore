@@ -46,3 +46,6 @@ Desktop.ini
 
 # Vagrant
 .vagrant
+
+# SASS
+.sass-cache
