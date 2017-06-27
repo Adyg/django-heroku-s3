@@ -27,9 +27,7 @@
       state: present
 
   - name: ensure packages are installed
-    apt: 
-      name: {% templatetag openvariable %}item{% templatetag closevariable %}
-      update_cache: yes
+    apt: name={% templatetag openvariable %} item {% templatetag closevariable %}
     with_items:
         - make
         - build-essential
