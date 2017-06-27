@@ -1,5 +1,12 @@
-@import "compass";
-@import "breakpoint";
-@import "singularitygs";
+@import "compass/css3/box-sizing";
 
-@import "variables/**/*";
+@import "normalize";
+@import "html5bp";
+@import "helpers";
+
+@import "variables/colors";
+@import "variables/typography";
+
+* {
+  @include box-sizing(border-box);
+}
