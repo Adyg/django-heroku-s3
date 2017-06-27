@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /vagrant
+cd /vagrant_data
 printf "Installing requirements ...\n"
 pip install -r requirements/local.txt
 
