@@ -94,6 +94,6 @@ Sass
 ----
 CSS files can be built with 
 ```
-$ cd /vagrant_data/static
-$ bundler exec compass compile
+$ cd /vagrant_data
+$ ./compile_sass.sh
 ```
