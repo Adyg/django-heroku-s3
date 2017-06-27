@@ -1,5 +1,8 @@
 #!/bin/bash
 cd /vagrant_data
+printf "Running migrations ...\n"
+/usr/bin/python manage.py migrate
+
 printf "Installing requirements ...\n"
 pip install -r requirements/local.txt
 
