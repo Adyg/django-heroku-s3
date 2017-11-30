@@ -33,7 +33,7 @@ Basic Usage
 Amazon S3
 ---------
 - Create an [Amazon S3 bucket ](https://console.aws.amazon.com/s3)
-- After creating the bucket, under it's Properties > Permissions section, update it's  CORS configuration to something along the lines of:
+- After creating the bucket, under its Properties > Permissions section, update its  CORS configuration to something along the lines of:
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
@@ -46,7 +46,7 @@ Amazon S3
     </CORSRule>
 </CORSConfiguration>
 ```
-- Create a new [IAM User](https://console.aws.amazon.com/iam/home) (remember to download it's access key and secret access key)
+- Create a new [IAM User](https://console.aws.amazon.com/iam/home) (remember to download its access key and secret access key)
 - Go to the new IAM User's page and attach a new policy to allow access to S3. Something similar to:
 ```
 {
@@ -71,7 +71,7 @@ Amazon S3
 
 Heroku
 ------
-- Create an app on [Heroku](https://heroku.com/) (aim for it's name to be the same as the Django project name, otherwise customization to the bash scripts will be needed)
+- Create an app on [Heroku](https://heroku.com/) (aim for its name to be the same as the Django project name, otherwise customization to the bash scripts will be needed)
 - Inside the vagrant box, go to the `/vagrant_data` dir and run `$ heroku git:remote -a [projectname]`
 - Update the project Heroku settings (can be run inside the vagrant box, under the /vagrant_data dir):
 ```
