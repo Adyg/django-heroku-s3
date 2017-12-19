@@ -47,7 +47,7 @@ Amazon S3
 </CORSConfiguration>
 ```
 - Create a new [IAM User](https://console.aws.amazon.com/iam/home) (remember to download its access key and secret access key)
-- Go to the new IAM User's page and attach a new policy to allow access to S3. Something similar to:
+- Go to the new IAM User's page and attach a new policy to allow access to S3. Something similar to (replace BUCKET_NAME with the actual name of your bucket):
 ```
 {
     "Version": "2012-10-17",
